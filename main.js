@@ -13,14 +13,31 @@ var app = new Vue({
         //「並び替え」の選択値（１：標準、２：価格が安い順）
         sortOrder: 1,
         //商品リスト
-        products: [
-            {id: 1, name: 'Michael<br>スマホケース', price: 1580, image:'images/01.jpg', delv: 0, isSale: true },
-            {id: 2, name: 'Raphael<br>スマホケース', price: 1580, image:'images/02.jpg', delv: 0, isSale: true },
-            {id: 3, name: 'Gabriel<br>スマホケース', price: 1580, image:'images/03.jpg', delv: 240, isSale: true },
-            {id: 4, name: 'Uriel<br>スマホケース', price: 980, image:'images/04.jpg', delv: 0, isSale: true },
-            {id: 5, name: 'Ariel<br>スマホケース', price: 980, image:'images/05.jpg', delv: 0, isSale: false },
-            {id: 6, name: 'Azeriel<br>スマホケース', price: 1580, image:'images/06.jpg', delv: 0, isSale: false },
-        ]
+        products: [],
+        //エラーの有無
+        isError: false,
+        //メッセージ
+        message: ''
+    },
+    //ライフサイクルハック
+    created: function() {
+        //JSONPのURL（サーバーに配置する）
+        var url = 'products.js';
+        //非同期通信でJSONPを読みこむ
+        $.ajax({
+            url: url,
+            type: 'GET', //通信先URL
+            dataType: 'jsonp',　//使用するHTTPメソッド
+            jsonp: 'callback',　//クエリパラメータの名前
+            jsonpCallback: 'products' //コールバック関数の名前
+        })
+        .done(function(data,textStatus,errorThrown) {
+            this.products = data;
+        }.bind(this))
+        .fail(function(jqXHR,textStatus,errorThrown) {
+            this.isError = true;
+            this.message = '商品リストの読み込みに失敗しました';
+        }.bind(this));
     },
     computed: {
         //絞り込みあとの商品リストを返す算出プロパティ

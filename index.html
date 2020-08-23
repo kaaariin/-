@@ -31,6 +31,7 @@
                 </div>
             </div>
             <!-- 商品一覧 -->
+            <div v-if='isError' class="error">{{message}}</div>
             <div class="list">
                 <div class="item"　v-for="product in filteredList">
                     <figure class="image">
@@ -109,6 +110,7 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script src="main.js"></script>
 </body>
