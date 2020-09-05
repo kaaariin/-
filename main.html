@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="components/product-header.css">
+    <link rel="stylesheet" href="components/product.css">
+    <link rel="stylesheet" href="components/product-list.css">
+    <title>商品一覧</title>
+</head>
+
+<body>
+    <div id="app">
+        <product-list v-bind:products="products"></product-list>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+    <script src="common/filter.js"></script>
+    <script src="components/product-header.js"></script>
+    <script src="components/product.js"></script>
+    <script src="components/product-list.js"></script>
+    <script src="main.js"></script>
+    <!-- 子から親の順番で読みこむ -->
+</body>
+
+</html>
